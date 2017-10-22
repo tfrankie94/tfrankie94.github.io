@@ -46,10 +46,10 @@ function quiz_finished(){
 	$("#finish").show();
 
 	if (typeof(Storage) !== "undefined"){
-		if(isNaN(localStorage.getItem("points_count"))){
+		if(!localStorage.getItem("points_count") || isNaN(localStorage.getItem("points_count"))){
 			localStorage.setItem("points_count", 0);
 		}
-		if(isNaN(localStorage.getItem("questions_count"))){
+		if(!localStorage.getItem("questions_count") || isNaN(localStorage.getItem("questions_count"))){
 			localStorage.setItem("questions_count", 0);
 		}
 		localStorage.setItem("points_count", parseInt(localStorage.getItem("points_count")) + points);
