@@ -21,15 +21,6 @@ var single_question_width = 100/questions.length
 function next_question(){
 	seconds_left = seconds_per_question;
 	clearInterval(timer);
-	if($('input[name=answer]:checked').next().text() == questions[current_question].correctAnswer){
-		points++;
-		$("#main_bar").append(`<div class='progress-bar progress-bar-success' role='progressbar' style='width:${single_question_width}%'></div>`);
-	} else if (!$('input[name=answer]:checked').next().text()){
-		$("#main_bar").append(`<div class='progress-bar progress-bar-warning' role='progressbar' style='width:${single_question_width}%'></div>`);
-	} else {
-		$("#main_bar").append(`<div class='progress-bar progress-bar-danger' role='progressbar' style='width:${single_question_width}%'></div>`);
-	}
-	$('input[name=answer]:checked').prop('checked', false);
 
 	current_question++;
 	if(current_question < questions.length){
@@ -65,6 +56,14 @@ $("button[type=button]").click(function(){
 		    $(this).hide();
 		});
 	} else {
+		if($('input[name=answer]:checked').next().text() == questions[current_question].correctAnswer){
+			points++;
+			$("#main_bar").append(`<div class='progress-bar progress-bar-success' role='progressbar' style='width:${single_question_width}%'></div>`);
+		} else {
+			$("#main_bar").append(`<div class='progress-bar progress-bar-danger' role='progressbar' style='width:${single_question_width}%'></div>`);
+		}
+		$('input[name=answer]:checked').prop('checked', false);
+
 		next_question();
 	}
 });
@@ -75,7 +74,8 @@ function idle_func(){
 	.css("width", seconds_left * (100/seconds_per_question) + "%")
 	.text(seconds_left + "s left");
 	if (seconds_left < 1){
-			next_question()
+		$("#main_bar").append(`<div class='progress-bar progress-bar-warning' role='progressbar' style='width:${single_question_width}%'></div>`);
+		next_question()
 	}
 	seconds_left--;
 }
