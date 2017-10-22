@@ -1,0 +1,43 @@
+
+body {
+  font-size: 18px;
+}
+
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    width: 100%;
+    background-color: lightgrey;
+}
+
+.flex-item {
+    background-color: cornflowerblue;
+    margin: 10px;
+}
+
+.single_input {
+  display: block;
+}
+
+#finish{
+  font-weight: 600;
+  margin: 80px;
+  text-align: center;
+  font-size: 30px;
+}
+
+#points{
+  color: green;
+  font-size: 80px;
+}
+
+#overall{
+  margin-top: 40px;
+  font-size: 18px;
+}
+
+.progress-bar-warning {
+  background-color: grey
+}
